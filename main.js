@@ -8,6 +8,9 @@
     constructor() {
       this.el = document.createElement('li');
       this.el.classList.add('pressed');
+      this.el.addEventListener('click', () => {
+        this.check();
+      });
     }
     getEl() {
       //elプロパティを返すメソッド
@@ -19,7 +22,19 @@
       this.el.classList.remove('pressed');
       this.el.textContent = num;
     }
+    check() {
+      //parseInt = 文字列を数値にする
+      if (currentNum === parseInt(this.el.textContent, 10)) {
+        this.el.classList.add('pressed');
+        //次を選べるように1を増やす
+        currentNum++;
+      }
+    }
+
+
   }
+
+
 
   class Board {
     constructor() {
@@ -48,6 +63,9 @@
       })
     }
   }
+
+  let currentNum = 0;
+
   const board = new Board();
   const btn = document.getElementById('btn');
   btn.addEventListener('click', () => {
