@@ -4,7 +4,6 @@
 
 {
 
-
   class Panel {
     constructor() {
       this.el = document.createElement('li');
@@ -16,10 +15,10 @@
       return this.el;
     }
 
-activate(num) {
-this.el.classList.remove('pressed');
-this.el.textContent = num;
-}
+    activate(num) {
+      this.el.classList.remove('pressed');
+      this.el.textContent = num;
+    }
   }
 
   class Board {
@@ -39,18 +38,19 @@ this.el.textContent = num;
         board.appendChild(panel.getEl());
       });
     }
-activate(){
-//それぞれのパネルに対して処理をするのでforEachで回す
-this.panels.forEach(panel =>{
-panel.activate(0);
-
-})
-}
+    activate() {
+      const nums = [0, 1, 2, 3];
+      //それぞれのパネルに対して処理をするのでforEachで回す
+      this.panels.forEach(panel => {
+        //数字はナンバーの集まりのうちランダムに選ばれた数 * ナンバーの数
+        const num = nums.splice(Math.floor(Math.random() * nums.length), 1)[0];
+        panel.activate(num);
+      })
+    }
   }
   const board = new Board();
-const btn = document.getElementById('btn');
-btn.addEventListener('click', () => {
-board.activate();
-});
-
+  const btn = document.getElementById('btn');
+  btn.addEventListener('click', () => {
+    board.activate();
+  });
 }
