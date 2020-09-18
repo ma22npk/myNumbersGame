@@ -5,12 +5,18 @@
 {
 
 
-class Panel {
-constructor() {
-this.el = document.createElement('li');
-this.el.classList.add('pressed');
-}
-}
+  class Panel {
+    constructor() {
+      this.el = document.createElement('li');
+      this.el.classList.add('pressed');
+    }
+    getEl() {
+      //elプロパティを返すメソッド
+      //直接プロパティにアクセスせず、メソッドを作ってアクセスすることをオブジェクト指向のカプセル化と呼ぶ
+      return this.el;
+    }
+
+  }
 
   class Board {
     constructor() {
@@ -18,9 +24,16 @@ this.el.classList.add('pressed');
       //panelを4枚作る
       for (let i = 0; i < 4; i++) {
         //this.panelに対して後で作っていくPanelクラスのインスタンスをpushしてあげる
-        this.panels.push(new this.Panel());
+        this.panels.push(new Panel());
       }
-
+      this.setup();
+    }
+    setup() {
+      const board = document.getElementById('board');
+      this.panels.forEach(panel => {
+        //board.appendChild(panel.el);
+        board.appendChild(panel.getEl());
+      });
     }
   }
   const board = new Board();
