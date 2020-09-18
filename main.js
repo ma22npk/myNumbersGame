@@ -28,10 +28,11 @@
         this.el.classList.add('pressed');
         //次を選べるように1を増やす
         currentNum++;
+        if (currentNum === 4) {
+          clearTimeout(timeoutId);
+        }
       }
     }
-
-
   }
 
 
@@ -64,11 +65,28 @@
     }
   }
 
+  function runTimer() {
+    const timer = document.getElementById('timer')
+    //現在時刻から押した時間を引き、1000で割って小数点二桁を表示する
+    timer.textContent = ((Date.now() - startTime) / 1000).toFixed(2);
+    timeoutId = setTimeout(() => {
+      runTimer();
+    }, 10);
+  }
+
+
+
   let currentNum = 0;
+  let startTime;
+  let timeoutId;
 
   const board = new Board();
   const btn = document.getElementById('btn');
   btn.addEventListener('click', () => {
     board.activate();
+    startTime = Date.now();
+    runTimer();
+
+
   });
 }
