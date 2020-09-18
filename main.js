@@ -16,6 +16,10 @@
       return this.el;
     }
 
+activate(num) {
+this.el.classList.remove('pressed');
+this.el.textContent = num;
+}
   }
 
   class Board {
@@ -35,8 +39,18 @@
         board.appendChild(panel.getEl());
       });
     }
+activate(){
+//それぞれのパネルに対して処理をするのでforEachで回す
+this.panels.forEach(panel =>{
+panel.activate(0);
+
+})
+}
   }
   const board = new Board();
-
+const btn = document.getElementById('btn');
+btn.addEventListener('click', () => {
+board.activate();
+});
 
 }
