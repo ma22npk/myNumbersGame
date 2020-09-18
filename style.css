@@ -10,7 +10,6 @@ body {
   /* 50px * 2 + 10px * 2 */
   width: 120px;
   margin: 16px;
-  background: pink;
 }
 
 #board {
@@ -54,5 +53,25 @@ body {
   margin-bottom: 8px;
   font-size: 20px;
   text-align: right;
+}
+
+#btn {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background: #f44336;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: center;
+  -webkit-box-shadow: 0 4px 0 #d1483e;
+          box-shadow: 0 4px 0 #d1483e;
+}
+
+#btn:active {
+  margin-top: 12px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 /*# sourceMappingURL=style.css.map */
